@@ -186,11 +186,8 @@ int main() {
 
     for (int i = 0; i < size; ++i)
         list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
-    cout << "List forward: ";
+    cout << "List: ";
     list.print();
-
-    cout << "List backward: ";
-    list.print_reverse();
 
     cout << "After deleting the fifth item: ";
     list.delete_pos(4);
@@ -210,6 +207,10 @@ int main() {
 
     cout << "Deleting the first value of the list: ";
     list.pop_front();
+    list.print();
+
+    cout << "Deleting the first value of the list by position: ";
+    list.delete_pos(0);
     list.print();
 
     return 0;
