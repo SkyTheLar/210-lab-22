@@ -5,6 +5,7 @@ COMSC 210 | Lab 22 | Skylar Robinson | IDE Used: Eclipse
 *************************************/
 
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -133,12 +134,18 @@ public:
 
     //delete the head node
     void pop_front() {
-
+    	Node* temp = head;
+    	head = temp->next;
+    	temp->next->prev = nullptr;
+    	delete temp;
     }
 
     //delete the tail node
     void pop_back() {
-
+    	Node* temp = tail;
+    	tail = temp->prev;
+    	temp->prev->next = nullptr;
+    	delete temp;
     }
 
     void print() {
@@ -172,6 +179,8 @@ public:
 
 // Driver program
 int main() {
+	srand(time(0));
+
     DoublyLinkedList list;
     int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
@@ -183,9 +192,24 @@ int main() {
     cout << "List backward: ";
     list.print_reverse();
 
-    cout << "Deleting list, then trying to print.\n";
-    list.~DoublyLinkedList();
-    cout << "List forward: ";
+    cout << "After deleting the fifth item: ";
+    list.delete_pos(4);
+    list.print();
+
+    cout << "Adding '5' to the beginning of the list: ";
+    list.push_front(5);
+    list.print();
+
+    cout << "Deleting '5' by value: ";
+    list.delete_val(5);
+    list.print();
+
+    cout << "Deleting the last value of the list: ";
+    list.pop_back();
+    list.print();
+
+    cout << "Deleting the first value of the list: ";
+    list.pop_front();
     list.print();
 
     return 0;
